@@ -1,6 +1,6 @@
 class AppRoutes {
   static String loginRoute = "/login";
   static String homeRoute = "/home";
-  static String homeDetailRoute = "/homeDetail";
-  
+  static String homeDetailRoute = "/detail";
+  static String cartRoute = "/cart";
 }

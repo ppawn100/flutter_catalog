@@ -3,6 +3,7 @@ import 'package:flutter_catalog/widgets/themes.dart';
 
 import './pages/home_page.dart';
 import './pages/login_page.dart';
+import '../pages/cart_page.dart';
 import './utils/routes.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => LoginPage(),
         AppRoutes.loginRoute: (context) => LoginPage(),
         AppRoutes.homeRoute: (context) => HomePage(),
+        AppRoutes.cartRoute: (context) => ChartPage(),
       },
     );
   }

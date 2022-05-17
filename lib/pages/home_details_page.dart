@@ -13,7 +13,9 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: MyTheme.creamColor,
       bottomNavigationBar: Container(
         color: Colors.white,
@@ -25,14 +27,11 @@ class HomeDetailPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                    MyTheme.darkBluishColor,
-                  ),
-                  shape: MaterialStateProperty.all(
-                    StadiumBorder(),
-                  )),
-              child: "Buy".text.make(),
-            ).wh(100, 50)
+                  backgroundColor:
+                      MaterialStateProperty.all(MyTheme.darkBluishColor),
+                  shape: MaterialStateProperty.all(StadiumBorder())),
+              child: "Add to cart".text.make(),
+            ).wh(120, 50)
           ],
         ).p32(),
       ),
@@ -60,6 +59,11 @@ class HomeDetailPage extends StatelessWidget {
                         .make(),
                     catalog.desc.text.color(Colors.grey).xl.make(),
                     10.heightBox,
+                    "If you are getting that error message, then according to Visual Studio you are missing at least one of the necessary components in that list. The most likely issue is that you didn't install the exact version of the Windows 10 SDK that's listed there, which is not included by default on the latest version."
+                        .text
+                        .color(Colors.grey)
+                        .make()
+                        .p16()
                   ],
                 ).py64(),
               ),
