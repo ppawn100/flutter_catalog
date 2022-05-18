@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -19,8 +18,8 @@ class CartPage extends StatelessWidget {
       body: Column(
         children: [
           CartList().p32().expand(),
-          Divider(),
-          CardTotal(),
+          const Divider(),
+          const CardTotal(),
         ],
       ),
     );
@@ -32,19 +31,19 @@ class CardTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CartModel _cart = (VxState.store as MyStore).cart;
+    final CartModel cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           VxBuilder(
-            builder: (context, store, status) => "\$${_cart.totalPrice}"
+            builder: (context, store, status) => "\$${cart.totalPrice}"
                 .text
                 .xl5
-                .color(context.accentColor)
+                .color(context.theme.secondaryHeaderColor)
                 .make(),
-            mutations: {RemoveMutation},
+            mutations: const {RemoveMutation},
           ),
           30.widthBox,
           ElevatedButton(
@@ -67,6 +66,8 @@ class CardTotal extends StatelessWidget {
 
 class CartList extends StatelessWidget {
   final CartModel _cart = (VxState.store as MyStore).cart;
+
+  CartList({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     VxState.watch(context, on: [RemoveMutation]);
@@ -75,10 +76,10 @@ class CartList extends StatelessWidget {
         : ListView.builder(
             itemCount: _cart.items.length,
             itemBuilder: (context, index) => ListTile(
-              leading: Icon(Icons.done),
+              leading: const Icon(Icons.done),
               title: _cart.items[index].name.text.make(),
               trailing: IconButton(
-                icon: Icon(Icons.remove_circle_outline),
+                icon: const Icon(Icons.remove_circle_outline),
                 onPressed: () => RemoveMutation(_cart.items[index]),
               ),
             ),

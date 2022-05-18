@@ -11,11 +11,13 @@ import './utils/routes.dart';
 void main() {
   runApp(VxState(
     store: MyStore(),
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,10 +28,10 @@ class MyApp extends StatelessWidget {
       darkTheme: MyTheme.darkTheme(context),
       initialRoute: AppRoutes.homeRoute,
       routes: {
-        "/": (context) => LoginPage(),
-        AppRoutes.loginRoute: (context) => LoginPage(),
-        AppRoutes.homeRoute: (context) => HomePage(),
-        AppRoutes.cartRoute: (context) => CartPage(),
+        "/": (context) => const LoginPage(),
+        AppRoutes.loginRoute: (context) => const LoginPage(),
+        AppRoutes.homeRoute: (context) => const HomePage(),
+        AppRoutes.cartRoute: (context) => const CartPage(),
       },
     );
   }

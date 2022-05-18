@@ -4,7 +4,7 @@ import '../models/catalog.dart';
 class ItemWidget extends StatelessWidget {
   final Item item;
 
-  const ItemWidget({super.key, required this.item}) : assert(item != null);
+  const ItemWidget({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class ItemWidget extends StatelessWidget {
       // shape: StadiumBorder(),
       child: ListTile(
         onTap: () {
-          print("${item.name} pressed");
+          // print("${item.name} pressed");
         },
         leading: Image.network(item.image),
         title: Text(item.name),
@@ -21,7 +21,7 @@ class ItemWidget extends StatelessWidget {
         trailing: Text(
           "\$${item.price}",
           textScaleFactor: 1.5,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.purple,
             fontWeight: FontWeight.bold,
           ),

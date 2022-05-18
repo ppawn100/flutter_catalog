@@ -3,6 +3,8 @@ import 'package:flutter_catalog/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -18,7 +20,8 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         changeButton = true;
       });
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
+      // ignore: use_build_context_synchronously
       await Navigator.pushNamed(context, AppRoutes.homeRoute);
       setState(() {
         changeButton = false;
@@ -36,17 +39,17 @@ class _LoginPageState extends State<LoginPage> {
               "assets/images/hey.png",
               fit: BoxFit.fill,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             Text(
               "Welcome $userName",
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             Padding(
@@ -68,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                         }
                         return null;
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Enter userName",
                         labelText: "UserName",
                       ),
@@ -88,12 +91,12 @@ class _LoginPageState extends State<LoginPage> {
                         }
                         return null;
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Enter password",
                         labelText: "Password",
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20.0,
                     ),
                     Material(
@@ -103,16 +106,16 @@ class _LoginPageState extends State<LoginPage> {
                       child: InkWell(
                         onTap: () => moveToHome(context),
                         child: AnimatedContainer(
-                          duration: Duration(seconds: 1),
+                          duration: const Duration(seconds: 1),
                           width: changeButton ? 50 : 150,
                           height: 50,
                           alignment: Alignment.center,
                           child: changeButton
-                              ? Icon(
+                              ? const Icon(
                                   Icons.done,
                                   color: Colors.white,
                                 )
-                              : Text(
+                              : const Text(
                                   "Login",
                                   style: TextStyle(
                                     color: Colors.white,

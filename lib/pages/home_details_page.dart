@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/widgets/home_widget/add_to_cart.dart';
-import 'package:flutter_catalog/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../models/catalog.dart';
@@ -8,8 +7,7 @@ import '../models/catalog.dart';
 class HomeDetailPage extends StatelessWidget {
   final Item catalog;
 
-  const HomeDetailPage({super.key, required this.catalog})
-      : assert(catalog != null);
+  const HomeDetailPage({super.key, required this.catalog});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +48,7 @@ class HomeDetailPage extends StatelessWidget {
                 child: Column(
                   children: [
                     catalog.name.text.xl4
-                        .color(context.accentColor)
+                        .color(context.theme.secondaryHeaderColor)
                         .bold
                         .make(),
                     catalog.desc.text.color(Colors.grey).xl.make(),

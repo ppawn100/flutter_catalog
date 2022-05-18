@@ -6,9 +6,10 @@ import 'package:flutter/services.dart';
 
 import '../models/catalog.dart';
 import '../widgets/drawer.dart';
-import '../widgets/item_widget.dart';
 
 class BasicHomePage extends StatefulWidget {
+  const BasicHomePage({Key? key}) : super(key: key);
+
   @override
   State<BasicHomePage> createState() => _BasicHomePageState();
 }
@@ -23,7 +24,7 @@ class _BasicHomePageState extends State<BasicHomePage> {
   }
 
   loadData() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     final catalogJson =
         await rootBundle.loadString("assets/files/catalog.json");
     final decodedData = jsonDecode(catalogJson);
@@ -41,7 +42,7 @@ class _BasicHomePageState extends State<BasicHomePage> {
       appBar: AppBar(title: const Text("Flutter Catalog")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: CatalogModel.items != null && CatalogModel.items.isNotEmpty
+        child: CatalogModel.items.isNotEmpty
             ?
             //ListView.builder(
             //     itemCount: CatalogModel.items.length,
@@ -49,7 +50,7 @@ class _BasicHomePageState extends State<BasicHomePage> {
             //         ItemWidget(item: CatalogModel.items[index]),
             //   )
             GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16),
@@ -61,13 +62,23 @@ class _BasicHomePageState extends State<BasicHomePage> {
                           borderRadius: BorderRadius.circular(10)),
                       child: GridTile(
                         header: Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: const BoxDecoration(
+                            color: Colors.deepPurple,
+                          ),
                           child: Text(
                             item.name,
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
+                        ),
+                        footer: Container(
                           padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.deepPurple,
+                          decoration: const BoxDecoration(
+                            color: Colors.black,
+                          ),
+                          child: Text(
+                            item.price.toString(),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
                         child: Image.network(
@@ -75,25 +86,13 @@ class _BasicHomePageState extends State<BasicHomePage> {
                           height: 50,
                           fit: BoxFit.cover,
                         ),
-                        footer: Container(
-                          child: Text(
-                            item.price.toString(),
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                          ),
-                        ),
                       ));
                 },
                 itemCount: CatalogModel.items.length,
               )
-            : Center(
-                child: CircularProgressIndicator(),
-              ),
+            : const Center(child: CircularProgressIndicator()),
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
     );
   }
 }

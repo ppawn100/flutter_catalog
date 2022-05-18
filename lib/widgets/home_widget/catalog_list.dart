@@ -8,6 +8,8 @@ import './catalog_image.dart';
 import 'add_to_cart.dart';
 
 class CatalogList extends StatelessWidget {
+  const CatalogList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -35,8 +37,7 @@ class CatalogList extends StatelessWidget {
 class CatalogItem extends StatelessWidget {
   final Item catalog;
 
-  const CatalogItem({super.key, required this.catalog})
-      : assert(catalog != null);
+  const CatalogItem({super.key, required this.catalog});
   @override
   Widget build(BuildContext context) {
     return VxBox(
@@ -53,9 +54,9 @@ class CatalogItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                catalog.name.text.lg.color(context.accentColor).bold.make(),
+                catalog.name.text.lg.color(context.theme.secondaryHeaderColor).bold.make(),
                 catalog.desc.text
-                    .textStyle(TextStyle(color: Colors.grey))
+                    .textStyle(const TextStyle(color: Colors.grey))
                     .make(),
                 ButtonBar(
                   alignment: MainAxisAlignment.spaceBetween,
