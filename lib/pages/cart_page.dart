@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class ChartPage extends StatelessWidget {
-  const ChartPage({Key? key}) : super(key: key);
+class CartPage extends StatelessWidget {
+  const CartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +37,13 @@ class _CardTotal extends StatelessWidget {
           "\$9999".text.xl5.color(context.accentColor).make(),
           30.widthBox,
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: "Buying is not supported yet. ".text.make()));
+            },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(
                 context.backgroundColor,
-              ),
-              shape: MaterialStateProperty.all(
-                StadiumBorder(),
               ),
             ),
             child: "Buy".text.white.make(),
