@@ -7,6 +7,7 @@ import '../models/catalog.dart';
 class MyStore extends VxStore {
   late CatalogModel catalog;
   late CartModel cart;
+  late VxNavigator navigator;
 
   MyStore() {
     catalog = CatalogModel();

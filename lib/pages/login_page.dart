@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/core/store.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -21,8 +22,11 @@ class _LoginPageState extends State<LoginPage> {
         changeButton = true;
       });
       await Future.delayed(const Duration(seconds: 1));
-      // ignore: use_build_context_synchronously
-      await Navigator.pushNamed(context, AppRoutes.homeRoute);
+      // await Navigator.pushNamed(context, AppRoutes.homeRoute);
+      (VxState.store as MyStore)
+          .navigator
+          .routeManager
+          .push(Uri.parse(AppRoutes.homeRoute));
       setState(() {
         changeButton = false;
       });
@@ -125,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                         ),
                       ),
-                    )
+                    ),
                     // ElevatedButton(
                     //   child: Text("Login"),
                     //   style: TextButton.styleFrom(
@@ -137,6 +141,21 @@ class _LoginPageState extends State<LoginPage> {
                     //     }
                     //   },
                     // )
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.vxNav.push(Uri.parse(AppRoutes.signupRoute));
+                      },
+                      style: ButtonStyle(
+                        foregroundColor: MaterialStateProperty.all(
+                          context.accentColor,
+                        ),
+                      ),
+                      child:
+                          const Text("Sign Up").text.headline6(context).make(),
+                    ),
                   ],
                 ),
               ),

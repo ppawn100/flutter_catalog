@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../core/store.dart';
 import '../../models/catalog.dart';
-import '../../pages/home_details_page.dart';
 import './catalog_image.dart';
 import 'add_to_cart.dart';
 
@@ -19,14 +20,22 @@ class CatalogList extends StatelessWidget {
         final catalog = CatalogModel.items[index];
         return InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeDetailPage(
-                    catalog: catalog,
-                  ),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => HomeDetailPage(
+              //       catalog: catalog,
+              //     ),
+              //   ),
+              // );
+              // context.vxNav.push(
+              //   Uri(
+              //       path: AppRoutes.homeDetailRoute,
+              //       queryParameters: {"id": catalog.id.toString()}),
+              // );
+              (VxState.store as MyStore).navigator.routeManager.push(Uri(
+                  path: AppRoutes.homeDetailRoute,
+                  queryParameters: {"id": catalog.id.toString()}));
             },
             child: CatalogItem(catalog: catalog));
       },
@@ -54,7 +63,10 @@ class CatalogItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                catalog.name.text.lg.color(context.theme.secondaryHeaderColor).bold.make(),
+                catalog.name.text.lg
+                    .color(context.theme.secondaryHeaderColor)
+                    .bold
+                    .make(),
                 catalog.desc.text
                     .textStyle(const TextStyle(color: Colors.grey))
                     .make(),
@@ -73,4 +85,3 @@ class CatalogItem extends StatelessWidget {
     ).color(context.cardColor).rounded.square(150).make().py16();
   }
 }
-
